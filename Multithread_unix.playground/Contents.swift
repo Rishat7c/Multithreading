@@ -59,3 +59,7 @@ var nsthread = Thread {
 // В первый пункт является капотом этой конструкции
 // Запускаем поток
 nsthread.start()
+// Установка приоритета
+// Чем выше приоритет, тем быстрее он выполняется
+Thread.setThreadPriority(2)
+nsthread.cancel()
