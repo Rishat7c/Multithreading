@@ -21,3 +21,18 @@ pthread_create(&pthread, &atribute, { (pointer) -> UnsafeMutableRawPointer? in
     pthread_set_qos_class_self_np(QOS_CLASS_BACKGROUND, 0)
     return nil
 }, nil)
+
+// После того как расмотрели капот, переходим к блоку
+let nsThread = Thread {
+    print("test")
+    print(qos_class_self())
+}
+
+// Забыл что хотел написать, поэтому представлю что все таки свифт топ ленгуэдж
+nsThread.qualityOfService = .userInteractive
+nsThread.start()
+
+// Печатаем главный поток
+print(qos_class_main())
+
+// п/с/ не путать очереди с потоками (т/к/ очередь - это структура данных)
