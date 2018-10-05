@@ -1,6 +1,6 @@
 import UIKit
 
-var str = "Synchronisation & Mutes"
+var str = "Synchronisation & Mutex"
 /* Защита данных и синхронизация */
 
 /**
