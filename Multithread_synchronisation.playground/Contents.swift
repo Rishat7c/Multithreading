@@ -46,3 +46,6 @@ savePotok.somePotok {
     array.append("1 potok") // Добавляем запись в массив
     // Эта констуркция защищенная
 }
+
+// пример записи без подушки
+array.append("2 potok")
