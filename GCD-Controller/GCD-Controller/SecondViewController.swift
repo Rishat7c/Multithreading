@@ -18,16 +18,32 @@ class SecondViewController: UIViewController {
 //            print(i)
 //        }
         
-        let queue = DispatchQueue.global(qos: .utility)
-        queue.async {
-            DispatchQueue.concurrentPerform(iterations: 20000) {
-                print("\($0) times")
-                print(Thread.current)
-            }
-        }
+//        let queue = DispatchQueue.global(qos: .utility)
+//        queue.async {
+//            DispatchQueue.concurrentPerform(iterations: 20000) {
+//                print("\($0) times")
+//                print(Thread.current)
+//            }
+//        }
+        
+        MyInActiveView()
         
     }
     
-    
+    func MyInActiveView() {
+        let inactiveView = DispatchQueue(label: "Rishat system", attributes: [.concurrent, .initiallyInactive]) // Это пиздец какая редкость. Подобных примеров нет!
+        
+        inactiveView.async {
+            print("Готово!")
+        }
+        
+        print("Не стартануло...")
+        inactiveView.activate()
+//        print("Стартанул!")
+//        inactiveView.suspend() // отправляем в сон
+//        print("Сон! Zzz...")
+//        inactiveView.resume() // разбудили
+        
+    }
     
 }
