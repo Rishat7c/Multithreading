@@ -27,7 +27,9 @@ class MyViewController: UIViewController {
     }
     
     @objc func pressAction() {
-        print("pressed")
+//        print("pressed")
+        let vc = MySecondViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func initButton() {
@@ -38,6 +40,20 @@ class MyViewController: UIViewController {
         button.layer.cornerRadius = 10
         button.setTitleColor(UIColor.white, for: .normal)
         view.addSubview(button)
+    }
+    
+}
+
+class MySecondViewController: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = "Demonstration VC 2"
+        view.backgroundColor = UIColor.white
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
     }
     
 }
