@@ -55,12 +55,16 @@ class MySecondViewController: UIViewController {
         self.title = "Demonstration VC 2"
         view.backgroundColor = UIColor.white
         
-        let imageURL: URL = URL(string: "https://www.planetware.com/photos-large/F/france-paris-eiffel-tower.jpg")!
+//        // Пока не придет наш имейдж с адреса, ничего не произойдет
+//        let imageURL: URL = URL(string: "https://www.planetware.com/photos-large/F/france-paris-eiffel-tower.jpg")!
+//
+//        // Data - ниже это суммка для байтов
+//        if let data = try? Data(contentsOf: imageURL) {
+//            self.image.image = UIImage(data: data)
+//        }
         
-        // Data - ниже это суммка для байтов
-        if let data = try? Data(contentsOf: imageURL) {
-            self.image.image = UIImage(data: data)
-        }
+        loadPhoto()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -72,6 +76,27 @@ class MySecondViewController: UIViewController {
         image.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
         image.center = view.center
         view.addSubview(image)
+    }
+    
+    func loadPhoto() {
+        
+        // Пока не придет наш имейдж с адреса, ничего не произойдет
+        let imageURL: URL = URL(string: "https://www.planetware.com/photos-large/F/france-paris-eiffel-tower.jpg")!
+        
+        // Создаем глобальную очеред, после чего мы к ней будем обращаться
+        // где .utility - это ВЫСОКИЙ приоритет
+        let queue = DispatchQueue.global(qos: .utility)
+        
+        // Если мы работаем с АСИНХРОННЫМ методом, то и в дальнейшем вызываем АСИНХРОННОСТЬ
+        // Иначе вызывется блокировка потока deadlock
+        queue.async {
+            if let data = try? Data(contentsOf: imageURL) {
+                DispatchQueue.main.async {
+                    self.image.image = UIImage(data: data)
+                }
+            }
+        }
+        
     }
     
 }
