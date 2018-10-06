@@ -18,11 +18,16 @@ class MyViewController: UIViewController {
         super.viewDidLoad()
         self.title = "Demonstration VC"
         view.backgroundColor = UIColor.white
+        button.addTarget(self, action: #selector(pressAction), for: .touchUpInside)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         initButton()
+    }
+    
+    @objc func pressAction() {
+        print("pressed")
     }
     
     func initButton() {
