@@ -63,7 +63,7 @@ class WriterMutex: Thread {
         
         print("writer - entered")
         
-        pthread_cond_signal(&condition) // Посылаем сигнал
+        pthread_cond_signal(&condition) // Посылаем сигнал, что мы готовы
         
         available = true
         defer {
@@ -75,3 +75,10 @@ class WriterMutex: Thread {
     }
     
 }
+
+// Обращаемся
+let contionMutexWrite = WriterMutex()
+let contionMutexPrint = PrinterMutex()
+// Стартуем с начала ПРИНТЕР а потом запись
+contionMutexPrint.start()
+contionMutexWrite.start()
