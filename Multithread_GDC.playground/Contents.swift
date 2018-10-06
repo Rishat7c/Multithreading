@@ -46,14 +46,32 @@ class MyViewController: UIViewController {
 
 class MySecondViewController: UIViewController {
     
+    var image = UIImageView()
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Demonstration VC 2"
         view.backgroundColor = UIColor.white
+        
+        let imageURL: URL = URL(string: "https://www.planetware.com/photos-large/F/france-paris-eiffel-tower.jpg")!
+        
+        // Data - ниже это суммка для байтов
+        if let data = try? Data(contentsOf: imageURL) {
+            self.image.image = UIImage(data: data)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        initImage()
+    }
+    
+    func initImage() {
+        image.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
+        image.center = view.center
+        view.addSubview(image)
     }
     
 }
