@@ -20,8 +20,8 @@ class MyViewController: UIViewController {
         view.backgroundColor = UIColor.white
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
         initButton()
     }
     
@@ -30,6 +30,7 @@ class MyViewController: UIViewController {
         button.center = view.center
         button.setTitle("Press", for:.normal)
         button.backgroundColor = UIColor.green
+        button.layer.cornerRadius = 10
         button.setTitleColor(UIColor.white, for: .normal)
         view.addSubview(button)
     }
